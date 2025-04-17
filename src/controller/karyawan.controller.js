@@ -104,9 +104,7 @@ export default class AuthController {
 
             if (error) throw new UnprocessableEntity(error.details[0].message);
 
-            const { nama, photo } = req.body;
-
-            const { affectedRows, nip } = await this.karyawanRepository.create(nama, photo);
+            const { affectedRows, nip } = await this.karyawanRepository.create(req.body);
 
             if (affectedRows === 0) {
                 throw new Error("Failed to create karyawan");

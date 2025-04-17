@@ -23,7 +23,9 @@ export default class karyawanRepository {
         return rows;
     }
 
-    async create(nama, photo) {
+    async create(body) {
+        const { nama, photo, gender, alamat, tanggal_lahir } = body;
+
         const data = await this.getLatestNIP(new Date().getFullYear());
 
         let nip = `${new Date().getFullYear()}0001`
@@ -34,8 +36,8 @@ export default class karyawanRepository {
         }
 
         const [result] = await this.connection.query(
-            `INSERT INTO karyawan (nip, nama, photo) VALUES (?, ?, ?)`, 
-            [nip, nama, photo]);
+            `INSERT INTO karyawan (nip, nama, photo, gender, alamat, tanggal_lahir) VALUES (?, ?, ?, ?, ?, ?)`, 
+            [nip, nama, photo, gender, alamat, tanggal_lahir]);
         
         return { affectedRows: result.affectedRows, nip };
     }

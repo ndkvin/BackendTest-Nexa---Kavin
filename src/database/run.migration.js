@@ -28,7 +28,10 @@ async function runMigration() {
                 nama VARCHAR(255) NOT NULL,
                 photo LONGTEXT,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                status INT DEFAULT 1
+                status INT DEFAULT 1,
+                alamat VARCHAR(255) DEFAULT NULL,
+                gender ENUM('L', 'P') DEFAULT NULL,
+                tanggal_lahir DATE DEFAULT NULL
             )
         `);
 
